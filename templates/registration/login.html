@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div style="background: url({% static 'img/fondo_login.webp' %});" class="mh-100">
+
+
+        <div class="card container text-center w-50 p-3">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <p>Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.</p>
+                    {% else %}
+                        <p>Please login to see this page.</p>
+                    {% endif %}
+                {% endif %}
+                <div class="row">
+                    <div class="col container">
+                        <div class="col">
+                            <td>{{ form.username.label_tag }}</td>
+                            <td>{{ form.username }}</td>
+                        </div>
+                        <div class="col">
+                            <td>{{ form.password.label_tag }}</td>
+                            <td>{{ form.password }}</td>
+                        </div>
+                        <div class="col">
+                            <input type="submit" value="login"/>
+                            <input type="hidden" name="next" value="{{ next }}"/>
+                            <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {# Assumes you setup the password_reset view in your URLconf #}
+{% endblock %}
