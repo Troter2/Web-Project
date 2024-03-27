@@ -4,5 +4,5 @@ from productions.models import production
 
 
 # Create your models here.
-class movie(models.Model):
-    idProduction = models.ForeignKey(production, on_delete=models.CASCADE)
+class serie(models.Model):
+    idProduction = models.ForeignKey(production,on_delete=models.CASCADE)
