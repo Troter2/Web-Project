@@ -14,22 +14,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
 
-
         <!-- elementos del menu colapsable -->
-
-        <ul>
+        <ul class="nav nav-pills nav-fill">
             {% if user.is_authenticated %}
-                <li>
+                <li class="nav-item">
                     <form action="{% url 'logout' %}" method="post" id="logout-form">
                         {% csrf_token %}
                     </form>
-                    <a href="#" onclick="submit()">Logout</a>
+                    <a class="nav-link active" aria-current="page"  href="#" onclick="submit()">Logout</a>
                 </li>
             {% else %}
-                <li>
-                    <a href="{% url 'login' %}">Log In</a>
-                    <a href="{% url 'signup' %}">Sing up</a>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  href="{% url 'login' %}">Log In</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Sing up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+
             {% endif %}
         </ul>
     </div>
