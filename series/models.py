@@ -20,7 +20,7 @@ class seasonDetail(models.Model):
     serie = models.ForeignKey(serie, on_delete=models.CASCADE)
     poster_path = models.CharField(max_length=255, default="")
     season_number = models.IntegerField()
-    vote_average = models.FloatField(blank=True, null=True)
+    vote_average = models.DecimalField(max_digits=4, decimal_places=2)
 
     def clean(self):
         if self.season_number >= self.serie.number_of_seasons:
@@ -34,7 +34,6 @@ class episodeDetail(models.Model):
     episode_number = models.IntegerField()
     name = models.CharField(max_length=255)
     overview = models.TextField(blank=True, null=True)
-    id = models.IntegerField(primary_key=True)
     runtime = models.IntegerField()
     season = models.ForeignKey(seasonDetail, on_delete=models.CASCADE)
     still_path = models.CharField(max_length=255, default="")

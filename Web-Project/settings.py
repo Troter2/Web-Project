@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'actors',
     'genders',
     'credits',
-    'genders_productions'
 
 
 ]
