@@ -12,8 +12,6 @@ class movie(models.Model):
     budget = models.FloatField(blank=True, null=True)
     genres = models.ManyToManyField(gender, blank=True)
     homepage = models.URLField(blank=True, null=True)
-    id = models.IntegerField(primary_key=True)
-    imdb_id = models.CharField(max_length=20, default="")
     original_language = models.CharField(max_length=20, unique=True, null=True)
     original_title = models.CharField(max_length=255, default="")
     overview = models.TextField(blank=True, null=True)
