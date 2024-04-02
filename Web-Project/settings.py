@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'accounts',
     'movies',
     'series',
-    'productions',
-    'directors',
     'actors',
     'genders',
     'credits',
