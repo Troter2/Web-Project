@@ -22,5 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path('accounts/', include('django.contrib.auth.urls')),
+<<<<<<< Updated upstream
     path('', homepage),
+=======
+    path('admin-redirect/', admin_redirect, name='admin_redirect'),
+    path('', homepage,name='home'),
+>>>>>>> Stashed changes
 ]
