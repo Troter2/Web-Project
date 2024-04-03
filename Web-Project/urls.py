@@ -20,6 +20,7 @@ from django.urls import path, include
 from accounts.views import admin_redirect
 from movies.views import homepage
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),
