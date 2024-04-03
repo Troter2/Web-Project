@@ -9,13 +9,13 @@
                         <div class="row g-0">
                             <div class="col-lg-12">
                                 <div class="card-body p-md-5 mx-md-4">
-
                                     <div class="text-center">
                                         <h4 class="mt-1 mb-5 pb-1">Iniciar sesión</h4>
                                     </div>
                                     <form method="post" action="{% url 'login' %}">
                                         {% csrf_token %}
                                         <div class=" mb-3 form-floating ">
+
                                             <input type="text" name="username" required="" class="form-control" id="userInput"
                                                    placeholder="name@example.com">
                                             <label for="userInput">Usuario</label>
@@ -34,7 +34,6 @@
                                     </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
                     <form action="{% url 'logout' %}" method="post" id="logout-form">
                         {% csrf_token %}
                     </form>
-                    <a class="nav-link active" aria-current="page"  href="#" onclick="submit()">Logout</a>
+                    <a class="nav-link active" aria-current="page" href="#" onclick="submit()">Logout</a>
                 </li>
             {% else %}
                 <li class="nav-item">
@@ -47,8 +47,8 @@
 
 </body>
 <script>
-            function submit() {
-                document.getElementById("logout-form").submit();
-            }
-        </script>
+    function submit() {
+        document.getElementById("logout-form").submit();
+    }
+</script>
 </html>
