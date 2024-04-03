@@ -43,4 +43,4 @@ Then, open your browser and go to the [localhost](http://127.0.0.1:8000/) url.
 
 ## Authors
 - [Lamrabat, Abdellah](https://github.com/AbdeDevs)
-- [Elena Pérez,Miquel](https://github.com/Miquel538))
+- [Elena Pérez,Miquel](https://github.com/Miquel538)
