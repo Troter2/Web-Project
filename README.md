@@ -46,3 +46,4 @@ Then, open your browser and go to the [localhost](http://127.0.0.1:8000/) url.
 - [Elena Pérez,Miquel](https://github.com/Miquel538)
 - [Vila Monguia,Sergi](https://github.com/Troter2)
 - [Prades Vidal, Josep](https://github.com/jus25)
+- [Miralles Jarque, Cinta](https://github.com/atnic15)
