@@ -15,35 +15,9 @@
                             <div class="card-body p-md-5 mx-md-4">
                                 <div class="container">
                                     <h2 class="mt-5 mb-4">Sign up</h2>
-                                    <form method="post" class="needs-validation" novalidate>
+                                    <form method="post" class="needs-validation">
                                         {% csrf_token %}
-                                        <div class=" mb-3 form-floating ">
-                                            <input type="text" name="username" required="" class="form-control"
-                                                   id="userInput"
-                                            placeholder="name@example.com">
-                                            <label for="id_username" class="form-label">Username</label>
-                                            <div class="invalid-feedback">
-                                                Please provide a username.
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 form-floating ">
-                                            <label for="id_password1" class="form-label">Password</label>
-                                            <input type="password" name="password1" required="" class="form-control"
-                                                   id="password1Input"
-                                            placeholder="">
-                                            <div class="invalid-feedback">
-                                                Please provide a valid password.
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 form-floating ">
-                                            <label for="id_password2" class="form-label">Confirm Password</label>
-                                            <input type="password" name="password2" required="" class="form-control"
-                                                   id="password2Input"
-                                                   placeholder="">
-                                            <div class="invalid-feedback">
-                                                Please confirm your password.
-                                            </div>
-                                        </div>
+                                        {{ form.as_p }}
                                         <button type="submit" class="btn btn-primary">Sign Up</button>
                                     </form>
                                 </div>
