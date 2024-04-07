@@ -30,12 +30,18 @@ cd Web-Project
 ```bash
 pip install -r req.txt
 ```
+4. Also, you can apply the following commands to generate and apply the database migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
 ## Usage
 
 Execute the following command to start the server
 
+1. Build and run the containers
 ```bash
-python manage.py runserver
+docker-compose up
 ```
 
 Then, open your browser and go to the [localhost](http://127.0.0.1:8000/) url.
