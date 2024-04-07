@@ -16,7 +16,7 @@ Manual installation of the project:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/SergiFn/MDP_Delivery1.git](https://github.com/Troter2/Web-Project.git
+git clone https://github.com/Troter2/Web-Project.git
 ```
 
 2. Navigate to the project folder
