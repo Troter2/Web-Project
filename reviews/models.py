@@ -1,17 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
-from movies.models import Movie
-from series.models import Serie
-
-
-
+from movies.models import movie
+from series.models import serie
 
 # Create your models here.
-class review(models.Model):
+class Review(models.Model):
 
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, blank=True, null=True)
-    serie = models.ForeignKey(Serie, on_delete=models.CASCADE, blank=True, null=True)
+    review_movie = models.ForeignKey(movie, on_delete=models.CASCADE, blank=True, null=True)
+    review_serie = models.ForeignKey(serie, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=255, default="")
     content = models.TextField(blank=True, null=True)
     rating = models.IntegerField(default=0)

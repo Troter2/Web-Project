@@ -1,9 +1,10 @@
 from django.urls import path
 from django.views.generic import TemplateView
+from reviews.views import new_review
 
 
 urlpatterns = [
 
-    path('new-review/', TemplateView.as_view(template_name='review/review_1.html'), name='new_review'),
+    path('new-review/', new_review, name='new_review'),
 
     ]
