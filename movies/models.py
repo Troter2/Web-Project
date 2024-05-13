@@ -8,6 +8,7 @@ from actors.models import actor
 
 # Create your models here.
 class movie(models.Model):
+    
     adult = models.BooleanField(default=False)
     backdrop_path = models.CharField(max_length=255, blank=True, null=True)
     belongs_to_collection = models.CharField(max_length=255, blank=True, null=True)
