@@ -14,7 +14,7 @@ def get_movie_data(movieId):
 
 def create_movie(movieId):
     movie1 = get_movie_data(movieId)
-    movie_db = movie.objects.create(
+    movie.objects.get_or_create(
         title=movie1['title'],
         overview=movie1['overview'],
         release_date=movie1['release_date'],
@@ -27,7 +27,7 @@ def create_movie(movieId):
         adult=movie1['adult'],
         id=movieId
     )
-    
+
 
 def create_review(request, movieId, review_form):
     review = review_form.save(commit=False)
