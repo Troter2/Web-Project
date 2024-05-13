@@ -1,80 +1,48 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Perfil{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Perfil de User</h2>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Nom d'usuari:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.username }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Contrasenya:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.password }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Nom:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.first_name  }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Cognoms:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.last_name }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Email:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.email }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Actiu:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.is_active }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Personal de staff:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.is_staff }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Superusuari:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.is_superuser }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Grups:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{% for group in user.groups.all %}
-                            {{ group.name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %} </span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Últim inici de sessió:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.last_login }}</span>
-                </div>
-            </div>
-            <div class="info-box" style="margin-bottom: 10px;">
-                    <strong style="font-size: 18px;">Data de registre:</strong><br>
-                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
-                    <span>{{ user.date_joined }}</span>
+<section class="h-100 gradient-form">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <h2 class="ml-4 mt-3">User Profile</h2>
+                            <div class="card-body p-md-3 mx-md-4">
+                                <div class="mb-3">
+                                    <strong>Username:</strong><br>
+                                    <div class="mt-2 ml-3">{{ user.username }}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Name:</strong><br>
+                                    <div class="mt-2 ml-3">{{ user.first_name }}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Last Name:</strong><br>
+                                    <div class="mt-2 ml-3">{{ user.last_name }}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Email:</strong><br>
+                                    <div class="mt-2 ml-3">{{ user.email }}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Partner Since:</strong><br>
+                                    <div class="mt-2 ml-3">{{ user.date_joined }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center d-none d-lg-block">
+                            <div class="text-black px-3 py-4 p-md-5 w-100 h-100 align-items-center justify-content-center rounded-custom"
+                                 style="background-image: url({% static 'img/gradient-reserve.webp' %}); background-repeat: no-repeat; background-size: cover;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}
