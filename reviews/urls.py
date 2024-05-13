@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from movies.views import list_movies
-from reviews.views import new_review,  movie_details
+from reviews.views import movie_details
 
 
 urlpatterns = [

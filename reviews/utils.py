@@ -26,7 +26,7 @@ def create_movie(movieId):
         adult=movie1['adult'],
         id=movieId
     )
-    return movie_db
+    
 
 
 def create_review(request, movieId, review_form):
@@ -36,7 +36,7 @@ def create_review(request, movieId, review_form):
     review.title = movie1['title']
     review.content = review_form.cleaned_data['content']
     review.rating = review_form.cleaned_data['rating']
-    
+    create_movie(movieId)
     review.review_movie_id = movieId
     review.save()
     

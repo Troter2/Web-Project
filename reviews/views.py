@@ -25,7 +25,8 @@ def movie_details(request, movieId):
             create_review(request, movieId, review_form)
             return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})
         else:
-            return form.add_error(None, "Error en el formulari")
+            print("PRINNTTTTTT: ", review_form.errors)
+            return review_form.add_error(None, "Error en el formulari")
 
 
     return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})

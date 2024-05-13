@@ -69,12 +69,20 @@
                             <!-- Aquí puedes agregar tu formulario de revisión -->
                             <form method="POST">
                                 {% csrf_token %}
-                                {{ review_form.as_p }}
-                                <input type="submit" value="Publicar">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                              id="floatingTextarea2" style="height: 100px"
+                                              name="{{ review_form.content.name }}">{{ review_form.content.value|default_if_none:'' }}</textarea>
+                                    <label for="floatingTextarea2">Comments</label>
+                                </div>
+                                <br>
+                                <div id="rateYo"></div>
+                                <input type="hidden" name="{{ review_form.rating.name }}" id="rating">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Publicar</button>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -82,4 +90,20 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css"/>
+<script>
+$(function () {
+    $("#rateYo").rateYo({
+        fullStar: true,
+        onSet: function (rating, rateYoInstance) {
+            $('#rating').val(rating);
+        }
+    });
+});
+</script>
 {% endblock %}
