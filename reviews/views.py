@@ -34,6 +34,7 @@ def new_review(request, movieId):
 
     return render(request, 'review/review_1.html', {'review_form': review_form, 'movie_title': request.session['movie_title']})
 
+
 def list_movies(request):
     api_key = '3462f0a957fcd5649fa50d0ffd4ba663'
     url = 'https://api.themoviedb.org/3/movie/popular'

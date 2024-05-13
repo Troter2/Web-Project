@@ -28,7 +28,7 @@ cd Web-Project
 3. Install the required packages
 
 ```bash
-pip install -r req.txt
+pip install -r requirements.txt
 ```
 4. Also, you can apply the following commands to generate and apply the database migrations
 ```bash

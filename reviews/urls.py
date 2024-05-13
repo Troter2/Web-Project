@@ -1,6 +1,8 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from reviews.views import new_review, list_movies, movie_details
+
+from movies.views import list_movies
+from reviews.views import new_review,  movie_details
 
 
 urlpatterns = [
