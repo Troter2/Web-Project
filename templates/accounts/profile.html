@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Perfil de User</h2>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Nom d'usuari:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.username }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Contrasenya:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.password }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Nom:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.first_name  }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Cognoms:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.last_name }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Email:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.email }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Actiu:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.is_active }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Personal de staff:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.is_staff }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Superusuari:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.is_superuser }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Grups:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{% for group in user.groups.all %}
+                            {{ group.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %} </span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Últim inici de sessió:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.last_login }}</span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-bottom: 10px;">
+                    <strong style="font-size: 18px;">Data de registre:</strong><br>
+                <div style="border: 1px solid #999; padding: 10px; border-radius: 5px; display: inline-block;">
+                    <span>{{ user.date_joined }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
