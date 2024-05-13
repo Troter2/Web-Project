@@ -17,15 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from accounts.views import admin_redirect
+from accounts.views import admin_redirect, view_profile
 from movies.views import homepage
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin-redirect/', admin_redirect, name='admin_redirect'),
-    path('', homepage,name='home'),
+    path('', homepage, name='home'),
     path('reviews/', include('reviews.urls')),
+    path('profile/', view_profile, name='view_profile'),
+
 ]
