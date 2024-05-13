@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin-redirect/', admin_redirect, name='admin_redirect'),
     path('', homepage, name='home'),
     path('reviews/', include('reviews.urls')),
-    path('series/', get_popular_series, name='series'),
+    path('list_series/', get_popular_series, name='list_series'),
     path('serie-detail/<int:serie_id>/', serie_details, name='serie_details'),
 
 ]

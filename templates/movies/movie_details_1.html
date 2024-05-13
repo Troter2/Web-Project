@@ -14,13 +14,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img class="img-fluid" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
-                     alt="{{ movie.title }}">
+                <img class="img-fluid fade-img" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}" style="box-shadow: 0 30px 40px rgba(0,0,0,.1);">
+
             </div>
             <div class="col-md-6">
-                <h1 class="mb-3">{{ movie.title }}</h1>
-                <p>{{ movie.overview }}</p>
-                <table class="table table-striped">
+                <h1 class="mb-3 text-light-white" >{{ movie.title }}</h1>
+                <p class="text-white-50">{{ movie.overview }}</p>
+                <table class="table table-dark table-striped">
                     <tr>
                         <th>Fecha de lanzamiento</th>
                         <td>{{ movie.release_date }}</td>
