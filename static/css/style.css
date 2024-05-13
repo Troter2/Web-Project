@@ -30,3 +30,8 @@
     opacity: 1;
 }
 
+.rounded-custom {
+    border-top-right-radius: 1%;
+    border-bottom-right-radius: 1%;
+}
+
