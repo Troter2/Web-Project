@@ -35,3 +35,12 @@ def list_movies(request):
     data = response.json()
     movie = data['results']
     return render(request, 'movies/movie_1.html', {'data': movie})
+
+def movie_details(request, movieId):
+    api_key = '3462f0a957fcd5649fa50d0ffd4ba663'
+    url = f'https://api.themoviedb.org/3/movie/{movieId}'
+    params = {'api_key': api_key}
+    response = requests.get(url, params=params)
+    movie = response.json()
+
+    return render(request, 'movies/movie_details_1.html', {'movie': movie})

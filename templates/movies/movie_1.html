@@ -13,6 +13,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ movie.title }}</h5>
                             <p class="card-text">{{ movie.overview }}</p>
+                            <a href="{% url 'movie_details' movie.id %}" class="btn btn-primary">Ver detalles</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Fecha de lanzamiento: {{ movie.release_date }}</small><br>
