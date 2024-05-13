@@ -2,3 +2,8 @@
     text-align: center;
     color: #0000FF; /* Este es un color azul básico, puedes ajustarlo a tu gusto */
 }
+
+.cover:hover {
+    webkit-filter: blur(4px); /* Chrome, Safari, Opera */
+    filter: blur(4px);
+}
