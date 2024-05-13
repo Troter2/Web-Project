@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} New Review {% endblock %}
+
+{% block content %}
+
+    <div class="card px-4 mt-4  ">
+        <h1 class="mt-4">New Review </h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <input type="submit" value="Publish">
+        </form>
+
+    </div>
+
+
+{% endblock %}
