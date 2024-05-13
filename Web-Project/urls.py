@@ -27,4 +27,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin-redirect/', admin_redirect, name='admin_redirect'),
     path('', homepage,name='home'),
+    path('reviews/', include('reviews.urls')),
 ]
