@@ -44,7 +44,4 @@ def movie_details(request, movieId):
     params = {'api_key': api_key}
     response = requests.get(url, params=params)
     movie = response.json()
-
-    print(movie)
-
     return render(request, 'movies/movie_details_1.html', {'movie': movie})
