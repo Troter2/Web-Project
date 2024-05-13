@@ -10,18 +10,38 @@
             </div>
             <div class="col-md-6">
                 <h1 class="mb-3">{{ movie.title }}</h1>
-                <p class="text-muted">{{ movie.overview }}</p>
-                <p class="mb-1"><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
-                <p class="mb-1"><strong>Puntuación media:</strong> {{ movie.vote_average }}</p>
-                <p class="mb-1"><strong>Idioma original:</strong> {{ movie.original_language }}</p>
-                <p class="mb-1"><strong>Popularidad:</strong> {{ movie.popularity }}</p>
-                <p class="mb-1"><strong>Votos:</strong> {{ movie.vote_count }}</p>
-                {% if movie.homepage %}
-                    <p class="mb-1"><strong>Presupuesto:</strong> {{ movie.budget }}</p>
-                {% endif %}
-                {% if movie.homepage %}
-                   <p class="mb-1"><strong>HomePage:</strong> <a href="{{ movie.homepage }}"> {{ movie.homepage }}</a></p>
-                {% endif %}
+                <p>{{ movie.overview }}</p>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Fecha de lanzamiento</th>
+                        <td>{{ movie.release_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>Puntuación media</th>
+                        <td>{{ movie.vote_average }}</td>
+                    </tr>
+                    <tr>
+                        <th>Idioma original</th>
+                        <td>{{ movie.original_language }}</td>
+                    </tr>
+                    <tr>
+                        <th>Popularidad</th>
+                        <td>{{ movie.popularity }}</td>
+                    </tr>
+                    <tr>
+                        <th>Votos</th>
+                        <td>{{ movie.vote_count }}</td>
+                    </tr>
+                    <tr>
+                        <th>Presupuesto</th>
+                        <td>{{ movie.budget }}</td>
+                    </tr>
+                    <tr>
+                        <th>HomePage</th>
+                        <td><a href="{{ movie.homepage }}"> {{ movie.homepage }}</a></td>
+                    </tr>
+                    <!-- Agrega más filas según sea necesario -->
+                </table>
                 <a href="{% url 'list_movies' %}" class="btn btn-primary">Volver a la lista de películas</a>
             </div>
         </div>
