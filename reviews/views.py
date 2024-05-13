@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import requests
 import json
-from reviews.utils import get_movie_data
+from reviews.utils import get_movie_data, create_review, create_movie
 
 
 # Create your views here.
@@ -45,7 +45,16 @@ def list_movies(request):
     return render(request, 'movies/movie_1.html', {'data': movies})
 
 def movie_details(request, movieId):
+
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            create_review(request, movieId, review_form)
+            create_movie(movieId)
+            return render(request, 'movies/movie_details_2.html')
+        else:
+            return form.add_error(None, "Error en el formulari")
+
     movie = get_movie_data(movieId)
-    request.session['movie_title'] = movie['title']
-    return render(request, 'movies/movie_details_1.html', {'movie': movie})
+    return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})
 

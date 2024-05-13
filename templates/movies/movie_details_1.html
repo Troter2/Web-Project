@@ -3,48 +3,76 @@
 {% block title %} Detalles de la película {% endblock %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <img class="img-fluid" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
-            </div>
-            <div class="col-md-6">
-                <h1 class="mb-3">{{ movie.title }}</h1>
-                <p>{{ movie.overview }}</p>
-                <table class="table table-striped">
-                    <tr>
-                        <th>Fecha de lanzamiento</th>
-                        <td>{{ movie.release_date }}</td>
-                    </tr>
-                    <tr>
-                        <th>Puntuación media</th>
-                        <td>{{ movie.vote_average }}</td>
-                    </tr>
-                    <tr>
-                        <th>Idioma original</th>
-                        <td>{{ movie.original_language }}</td>
-                    </tr>
-                    <tr>
-                        <th>Popularidad</th>
-                        <td>{{ movie.popularity }}</td>
-                    </tr>
-                    <tr>
-                        <th>Votos</th>
-                        <td>{{ movie.vote_count }}</td>
-                    </tr>
-                    <tr>
-                        <th>Presupuesto</th>
-                        <td>{{ movie.budget }}</td>
-                    </tr>
-                    <tr>
-                        <th>HomePage</th>
-                        <td><a href="{{ movie.homepage }}"> {{ movie.homepage }}</a></td>
-                    </tr>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+        </div>
+        <div class="col-md-6">
+            <h1 class="mb-3">{{ movie.title }}</h1>
+            <p>{{ movie.overview }}</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>Fecha de lanzamiento</th>
+                    <td>{{ movie.release_date }}</td>
+                </tr>
+                <tr>
+                    <th>Puntuación media</th>
+                    <td>{{ movie.vote_average }}</td>
+                </tr>
+                <tr>
+                    <th>Idioma original</th>
+                    <td>{{ movie.original_language }}</td>
+                </tr>
+                <tr>
+                    <th>Popularidad</th>
+                    <td>{{ movie.popularity }}</td>
+                </tr>
+                <tr>
+                    <th>Votos</th>
+                    <td>{{ movie.vote_count }}</td>
+                </tr>
+                <tr>
+                    <th>Presupuesto</th>
+                    <td>{{ movie.budget }}</td>
+                </tr>
+                <tr>
+                    <th>HomePage</th>
+                    <td><a href="{{ movie.homepage }}"> {{ movie.homepage }}</a></td>
+                </tr>
 
-                </table>
-                <a href="{% url 'list_movies' %}" class="btn btn-primary">Volver a la lista de películas</a>
-                <a href="{% url 'new_review' movie.id %}" class="btn btn-primary">Comentar</a>
+            </table>
+            <a href="{% url 'list_movies' %}" class="btn btn-primary">Volver a la lista de películas</a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                Comentar
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reviewModalLabel">Nueva Reseña</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Aquí puedes agregar tu formulario de revisión -->
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ review_form.as_p }}
+                                <input type="submit" value="Publicar">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
