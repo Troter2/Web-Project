@@ -1,7 +1,9 @@
 from django.db import models
 
+
 from credits.models import productor
 from genders.models import gender
+from actors.models import actor
 
 
 # Create your models here.
@@ -11,6 +13,8 @@ class movie(models.Model):
     belongs_to_collection = models.CharField(max_length=255, blank=True, null=True)
     budget = models.FloatField(blank=True, null=True)
     genres = models.ManyToManyField(gender, blank=True)
+    producer = models.ManyToManyField(productor, blank=True)
+    actor = models.ManyToManyField(actor, blank=True)
     homepage = models.URLField(blank=True, null=True)
     original_language = models.CharField(max_length=20, unique=True, null=True)
     original_title = models.CharField(max_length=255, default="")

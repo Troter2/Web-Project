@@ -1,5 +1,10 @@
+
 from django.db import models
 from django.core.exceptions import ValidationError
+
+from credits.models import productor
+from actors.models import actor
+
 
 # Create your models here.
 class serie(models.Model):
@@ -7,9 +12,9 @@ class serie(models.Model):
     overview = models.TextField(default="No overview")
     number_of_episodes = models.IntegerField(default=0)
     number_of_seasons = models.IntegerField(default=0)
-    # season_number = models.IntegerField(default=0)
     in_production = models.BooleanField(default=False)
     original_language = models.CharField(max_length=100, default="")
+    producer = models.ManyToManyField(productor, blank=True)
 
 
 class seasonDetail(models.Model):
