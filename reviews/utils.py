@@ -11,6 +11,7 @@ def get_movie_data(movieId):
     movie_1 = response.json()
     return movie_1
 
+
 def create_movie(movieId):
     movie1 = get_movie_data(movieId)
     movie_db = movie.objects.create(
@@ -28,7 +29,6 @@ def create_movie(movieId):
     )
     
 
-
 def create_review(request, movieId, review_form):
     review = review_form.save(commit=False)
     movie1 = get_movie_data(movieId)
@@ -39,4 +39,3 @@ def create_review(request, movieId, review_form):
     create_movie(movieId)
     review.review_movie_id = movieId
     review.save()
-    

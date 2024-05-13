@@ -17,6 +17,7 @@ def list_movies(request):
     movies = LAST_MOVIES['results']
     return render(request, 'movies/movie_1.html', {'data': movies})
 
+
 def movie_details(request, movieId):
     movie = get_movie_data(movieId)
     if request.method == 'POST':
@@ -25,9 +26,7 @@ def movie_details(request, movieId):
             create_review(request, movieId, review_form)
             return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})
         else:
-            print("PRINNTTTTTT: ", review_form.errors)
+    
             return review_form.add_error(None, "Error en el formulari")
 
-
     return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})
-
