@@ -19,6 +19,7 @@ from django.urls import path, include
 
 from accounts.views import admin_redirect, view_profile
 from movies.views import homepage
+from series.views import get_popular_series, serie_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('admin-redirect/', admin_redirect, name='admin_redirect'),
     path('', homepage, name='home'),
     path('reviews/', include('reviews.urls')),
-    path('profile/', view_profile, name='view_profile'),
+    path('series/', get_popular_series, name='series'),
+    path('serie-detail/<int:serie_id>/', serie_details, name='serie_details'),
 
 ]
