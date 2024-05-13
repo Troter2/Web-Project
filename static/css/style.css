@@ -30,3 +30,10 @@
     opacity: 1;
 }
 
+.no-blue:active {
+    background-color: transparent !important;
+}
+
+.bg_gray:hover{
+    background-color: #dedede;
+}

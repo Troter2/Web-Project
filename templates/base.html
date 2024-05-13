@@ -44,7 +44,7 @@
                     <ul class="dropdown-menu bg-light my-0 py-0 text-black-50" aria-labelledby="navbarCamarero">
                         <div class="nav-link-div"
                              onclick="navigateToURL('#')">
-                            <li class="dropdown-item mt-2 mb-2 no-blue">
+                            <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
                                 <a href="#" class="link-underline link-underline-opacity-0">
                                     Perfil
                                 </a>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="nav-link-div"
                              onclick="navigateToURL('#')">
-                            <li class="dropdown-item mt-2 mb-2 ">
+                            <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
                                 <form action="{% url 'logout' %}" method="post" id="logout-form">
                                     {% csrf_token %}
                                 </form>
