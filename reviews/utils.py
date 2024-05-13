@@ -3,7 +3,7 @@ import json
 
 
 def get_movie_data(movieId):
-    api_key = '3462f0a957fcd5649fa50d0ffd4ba663'
+    api_key = 'f4c3c931d2931acc4cade9ee84df005c'
     url = f'https://api.themoviedb.org/3/movie/{movieId}'
     params = {'api_key': api_key}
     response = requests.get(url, params=params)
@@ -19,7 +19,7 @@ def create_movie(movieId):
         release_date=movie['release_date'],
         poster_path=movie['poster_path']
     )
-    
+    return
 
 def create_review(request, movieId, review_form):
     review = review_form.save(commit=False)
@@ -30,3 +30,4 @@ def create_review(request, movieId, review_form):
     review.rating = review_form.cleaned_data['rating']
     review.review_movie_id = movieId
     review.save()
+    return

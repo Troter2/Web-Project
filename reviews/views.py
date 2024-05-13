@@ -36,7 +36,7 @@ def new_review(request, movieId):
 
 
 def list_movies(request):
-    api_key = '3462f0a957fcd5649fa50d0ffd4ba663'
+    api_key = 'f4c3c931d2931acc4cade9ee84df005c'
     url = 'https://api.themoviedb.org/3/movie/popular'
     params = {'api_key': api_key}
     response = requests.get(url, params=params)
@@ -51,7 +51,7 @@ def movie_details(request, movieId):
         if review_form.is_valid():
             create_review(request, movieId, review_form)
             create_movie(movieId)
-            return render(request, 'movies/movie_details_2.html')
+            return render(request, 'movies/movie_details_1.html')
         else:
             return form.add_error(None, "Error en el formulari")
 
