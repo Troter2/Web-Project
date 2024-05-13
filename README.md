@@ -28,7 +28,7 @@ cd Web-Project
 3. Install the required packages
 
 ```bash
-pip install -r req.txt
+pip install -r requirements.txt
 ```
 ## Usage
 
