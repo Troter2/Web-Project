@@ -8,20 +8,19 @@ import json
 
 # Create your views here.
 
-
 @login_required
-def new_review(request):
+def new_review(request, movieId):
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         if review_form.is_valid():
             """title = review_form.cleaned_data['title']
             rating = review_form.cleaned_data['rating']
             content = review_form.cleaned_data['content']
-            product_type = review_form.cleaned_data['product_id']"""
+            product_type = review_form.cleaned_data['product_id']
             review = review_form.save(commit=False)
             review.user_id_id = request.user.id
             review.title = review_form.cleaned_data['title']
-            review.save()
+            review.save()"""
             return render(request, 'review/review_2.html')
         else:
             return form.add_error(None, "Error en el formulari")
