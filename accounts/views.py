@@ -13,5 +13,6 @@ class SignUpView(generic.CreateView):
 def admin_redirect(request):
     return redirect('/admin')
 
+
 def view_profile(request):
-    return render(request,"accounts/profile.html")
+    return render(request, "accounts/profile.html")
