@@ -16,7 +16,12 @@
                 <p class="mb-1"><strong>Idioma original:</strong> {{ movie.original_language }}</p>
                 <p class="mb-1"><strong>Popularidad:</strong> {{ movie.popularity }}</p>
                 <p class="mb-1"><strong>Votos:</strong> {{ movie.vote_count }}</p>
-                <p class="mb-1"><strong>Presupuesto:</strong> {{ movie.budget }}</p>
+                {% if movie.homepage %}
+                    <p class="mb-1"><strong>Presupuesto:</strong> {{ movie.budget }}</p>
+                {% endif %}
+                {% if movie.homepage %}
+                   <p class="mb-1"><strong>HomePage:</strong> <a href="{{ movie.homepage }}"> {{ movie.homepage }}</a></p>
+                {% endif %}
                 <a href="{% url 'list_movies' %}" class="btn btn-primary">Volver a la lista de películas</a>
             </div>
         </div>

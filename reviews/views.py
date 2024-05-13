@@ -3,6 +3,8 @@ from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import requests
+import json
+
 
 # Create your views here.
 
@@ -42,5 +44,7 @@ def movie_details(request, movieId):
     params = {'api_key': api_key}
     response = requests.get(url, params=params)
     movie = response.json()
+
+    print(movie)
 
     return render(request, 'movies/movie_details_1.html', {'movie': movie})
