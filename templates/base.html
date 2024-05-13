@@ -22,22 +22,6 @@
 
         <!-- elementos del menu colapsable -->
         <ul class="nav nav-pills nav-fill">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <form action="{% url 'logout' %}" method="post" id="logout-form">
-                        {% csrf_token %}
-                    </form>
-                    <a class="nav-link active" aria-current="page" href="#" onclick="submit()">Logout</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"  href="{% url 'login' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">Sing up</a>
-                </li>
-
-            {% endif %}
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'home' %}">Home</a>
@@ -45,6 +29,23 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'list_movies' %}">Movies</a>
             </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item ">
+                    <form action="{% url 'logout' %}" method="post" id="logout-form">
+                        {% csrf_token %}
+                    </form>
+                    <a class="nav-link active" aria-current="page" href="#" onclick="submit()">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item ">
+                    <a class="nav-link" aria-current="page"  href="{% url 'login' %}">Log In</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'signup' %}">Sing up</a>
+                </li>
+
+            {% endif %}
         </ul>
     </div>
 </nav>
