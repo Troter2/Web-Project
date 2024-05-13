@@ -1,0 +1,32 @@
+.titulo-azul {
+    text-align: center;
+    color: #0000FF; /* Este es un color azul básico, puedes ajustarlo a tu gusto */
+}
+
+.cover:hover {
+    webkit-filter: blur(4px); /* Chrome, Safari, Opera */
+    filter: blur(4px);
+}
+
+.movie-card {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.movie-card:hover .overlay {
+    display: block;
+    opacity: 1;
+}
+
