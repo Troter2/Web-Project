@@ -17,7 +17,7 @@ class movie(models.Model):
     producer = models.ManyToManyField(productor, blank=True)
     actor = models.ManyToManyField(actor, blank=True)
     homepage = models.URLField(blank=True, null=True)
-    original_language = models.CharField(max_length=20, null=True)
+    original_language = models.CharField(max_length=20, null=True, unique=False)
     original_title = models.CharField(max_length=255, default="")
     overview = models.TextField(blank=True, null=True)
     poster_path = models.CharField(max_length=255, default="")
