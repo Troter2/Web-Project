@@ -31,5 +31,4 @@ urlpatterns = [
     path('list_series/', get_popular_series, name='list_series'),
     path('serie-detail/<int:serie_id>/', serie_details, name='serie_details'),
     path('profile/', view_profile, name='profile'),
-
 ]

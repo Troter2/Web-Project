@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Detalles de la serie {% endblock %}
+
+{% block content %}
+<div class="ml-5 mt-3">
+    <a href="{% url 'list_series' %}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor"
+             class="bi bi-arrow-left text-light-white" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+        </svg>
+    </a></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid fade-img" src="https://image.tmdb.org/t/p/w500{{ series.poster_path }}"
+                 alt="{{ series.title }}" style="box-shadow: 0 30px 40px rgba(0,0,0,.1);">
+
+        </div>
+        <div class="col-md-6">
+            <h1 class="mb-3 text-light-white">{{ series.title }}</h1>
+            <p class="text-white-50">{{ series.description }}</p>
+            <table class="table table-dark table-striped">
+                <tr>
+                    <th>Fecha de lanzamiento</th>
+                    <td>{{ series.release_date }}</td>
+                </tr>
+                <tr>
+                    <th>Puntuación media</th>
+                    <td>{{ series.rating }}</td>
+                </tr>
+                <tr>
+                    <th>Idioma Original</th>
+                    <td>{{ series.original_language }}</td>
+                </tr>
+                <tr>
+                    <th>Numero de episodios</th>
+                    <td>{{ series.number_of_episodes }}</td>
+                </tr>
+                <tr>
+                    <th>Numero de temporadas</th>
+                    <td>{{ series.number_of_seasons }}</td>
+                </tr>
+                <tr>
+                    <th>Popularidad</th>
+                    <td>{{ series.popularity }}</td>
+                </tr>
+                <tr>
+                    <th>HomePage</th>
+                    <td>{{ series.homepage }}</td>
+                </tr>
+            </table>
+            {% if user.is_authenticated %}
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                Comentar
+            </button>
+            {% else %}
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal"
+                    disabled>
+                Comentar
+            </button>
+            {% endif %}
+
+            <!-- Modal -->
+            <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reviewModalLabel">Nueva Reseña</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                              id="floatingTextarea2" style="height: 100px"
+                                              name="{{ review_form.content.name }}">{{ review_form.content.value|default_if_none:'' }}</textarea>
+                                    <label for="floatingTextarea2">Comments</label>
+                                </div>
+                                <br>
+                                <div id="rateYo"></div>
+                                <input type="hidden" name="{{ review_form.rating.name }}" id="rating">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Publicar</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css"/>
+<script>
+    $(function () {
+        $("#rateYo").rateYo({
+            fullStar: true,
+            onSet: function (rating, rateYoInstance) {
+                $('#rating').val(rating);
+            }
+        });
+    });
+</script>
+{% endblock %}
