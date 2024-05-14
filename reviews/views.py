@@ -15,7 +15,7 @@ def list_movies(request):
     response = requests.get(url, params=params)
     LAST_MOVIES = response.json()
     movies = LAST_MOVIES['results']
-    return render(request, 'movies/movie_1.html', {'data': movies})
+    return render(request, 'movies/movie_list.html', {'data': movies})
 
 
 def movie_details(request, movieId):
