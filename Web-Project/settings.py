@@ -128,6 +128,13 @@ MEDIA_ROOT = 'media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = "/"
 
+
+# Add this in your settings.py file:
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    BASE_DIR / 'media'
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
