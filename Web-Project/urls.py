@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from accounts.views import admin_redirect, view_profile
+from accounts.views import admin_redirect, view_profile, view_profile_edit
 from movies.views import homepage
 from series.views import get_popular_series, serie_details
 
@@ -31,5 +31,6 @@ urlpatterns = [
     path('list_series/', get_popular_series, name='list_series'),
     path('serie-detail/<int:serie_id>/', serie_details, name='serie_details'),
     path('profile/', view_profile, name='profile'),
+    path('profile_edit/', view_profile_edit, name='profile_edit'),
 
 ]
