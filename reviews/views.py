@@ -33,12 +33,18 @@ def movie_details(request, movieId):
         review_form = ReviewForm(request.POST)
         if review_form.is_valid():
             create_review(request, movieId, review_form)
-            reviews = Review.objects.filter(review_movie=movie_object)[:6]
+            try:
+                reviews = Review.objects.filter(review_movie=movie_object)[:6]
+            except :
+                reviews = None
             return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews})
         else:
             return review_form.add_error(None, "Error en el formulari")
 
-    reviews = Review.objects.filter(review_movie=movie_object)[:6]
+    try:
+        reviews = Review.objects.filter(review_movie=movie_object)[:6]
+    except :
+        reviews = None
     return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews})
 
 @login_required
