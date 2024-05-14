@@ -35,15 +35,16 @@
             </li>
             {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle  fw-semibold" style="text-transform: capitalize;" href="#" id="navbaruser" role="button"
+                    <a class="nav-link dropdown-toggle  fw-semibold" style="text-transform: capitalize;" href="#"
+                       id="navbaruser" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         {{ user.username }}
                     </a>
                     <ul class="dropdown-menu bg-light my-0 py-0 text-black-50" aria-labelledby="navbaruser">
                         <div class="nav-link-div"
-                             onclick="navigateToURL('#')">
+                             onclick="navigateToURL('{% url 'profile' %}')">
                             <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
-                                <a href="#" class="link-underline link-underline-opacity-0">
+                                <a href="{% url 'profile' %} " class="link-underline link-underline-opacity-0">
                                     Perfil
                                 </a>
                             </li>
@@ -86,6 +87,10 @@
 
 </body>
 <script>
+    function navigateToURL(url) {
+        window.location.href = url;
+    }
+
     function submit() {
         document.getElementById("logout-form").submit();
     }
