@@ -44,25 +44,25 @@
                         <div class="nav-link-div"
                              onclick="navigateToURL('{% url 'profile' %}')">
                             <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
-                                <a href="{% url 'profile' %} " class="link-underline link-underline-opacity-0">
+                                <a href="{% url 'profile' %} " class="link-underline link-underline-opacity-0 text-secondary fw-semibold" >
                                     Perfil
                                 </a>
                             </li>
                         </div>
                         <div class="nav-link-div"
                              onclick="navigateToURL('#')">
-                            <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
+                            <li class="dropdown-item mt-2 mb-2 bg_gray fw-semibold no-blue my-0 py-1">
                                 <form action="{% url 'logout' %}" method="post" id="logout-form">
                                     {% csrf_token %}
                                 </form>
-                                <a class="link-underline link-underline-opacity-0" aria-current="page" href="#"
+                                <a class="link-underline link-underline-opacity-0 text-secondary fw-semibold" aria-current="page" href="#"
                                    onclick="submit()">Logout</a>
                             </li>
                         </div>
                         <div class="nav-link-div"
                              onclick="navigateToURL('{% url 'my_reviews' %}')">
                             <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
-                                <a href="{% url 'my_reviews' %} " class="link-underline link-underline-opacity-0">
+                                <a href="{% url 'my_reviews' %} " class="link-underline link-underline-opacity-0 text-secondary fw-semibold">
                                     My Reviews
                                 </a>
                             </li>
