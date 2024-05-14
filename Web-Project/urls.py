@@ -32,5 +32,4 @@ urlpatterns = [
     path('serie-detail/<int:serie_id>/', serie_details, name='serie_details'),
     path('profile/', view_profile, name='profile'),
     path('profile_edit/', view_profile_edit, name='profile_edit'),
-
 ]
