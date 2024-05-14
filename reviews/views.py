@@ -1,10 +1,12 @@
+
 from django.shortcuts import render, redirect
+from movies.models import movie
 from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import requests
 import json
-from reviews.utils import get_movie_data, create_review, get_my_reviews
+from reviews.utils import get_movie_data, create_review, create_movie, get_my_reviews
 from .models import Review
 
 
@@ -20,17 +22,24 @@ def list_movies(request):
 
 
 def movie_details(request, movieId):
-    movie = get_movie_data(movieId)
+    try:
+        movie_data = get_movie_data(movieId)
+        movie_object = movie.objects.get(id=movieId)
+    except :
+        reviews = None
+
+
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         if review_form.is_valid():
             create_review(request, movieId, review_form)
-            return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})
+            reviews = Review.objects.filter(review_movie=movie_object)[:6]
+            return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews})
         else:
-    
             return review_form.add_error(None, "Error en el formulari")
 
-    return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})
+    reviews = Review.objects.filter(review_movie=movie_object)[:6]
+    return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews})
 
 @login_required
 def list_my_reviews(request):
