@@ -1,6 +1,7 @@
 import requests
 import json
 from movies.models import movie
+from reviews.models import Review
 
 
 def get_movie_data(movieId):
@@ -32,10 +33,27 @@ def create_movie(movieId):
 def create_review(request, movieId, review_form):
     review = review_form.save(commit=False)
     movie1 = get_movie_data(movieId)
-    review.user_id_id = request.user.id
-    review.title = movie1['title']
-    review.content = review_form.cleaned_data['content']
-    review.rating = review_form.cleaned_data['rating']
-    create_movie(movieId)
-    review.review_movie_id = movieId
-    review.save()
+    review_exists = get_review(request.user.id, movieId)
+    if review_exists is None:
+        review.user_id_id = request.user.id
+        review.title = movie1['title']
+        review.content = review_form.cleaned_data['content']
+        review.rating = review_form.cleaned_data['rating']
+        create_movie(movieId)
+        review.review_movie_id = movieId
+        review.save()
+    else:
+        review_exists.content = review_form.cleaned_data['content']
+        review_exists.rating = review_form.cleaned_data['rating']
+        review_exists.save()
+
+def get_review(user_id, movie_id):
+    try:
+        review = Review.objects.get(user_id=user_id, review_movie_id=movie_id)
+        return review
+    except Review.DoesNotExist:
+        return None
+
+def get_my_reviews(request):
+    reviews = Review.objects.filter(user_id=request.user.id)
+    return reviews

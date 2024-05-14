@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import requests
 import json
-from reviews.utils import get_movie_data, create_review, create_movie
+from reviews.utils import get_movie_data, create_review, get_my_reviews
+from .models import Review
 
 
 # Create your views here.
@@ -30,3 +31,14 @@ def movie_details(request, movieId):
             return review_form.add_error(None, "Error en el formulari")
 
     return render(request, 'movies/movie_details_1.html', {'movie': movie, 'review_form': ReviewForm()})
+
+@login_required
+def list_my_reviews(request):
+    reviews = get_my_reviews(request)
+    return render(request, 'review/list_my_reviews.html', {'reviews': reviews})
+
+@login_required
+def delete_review(request, reviewId):
+    review = Review.objects.get(id=reviewId)
+    review.delete()
+    return redirect('my_reviews')

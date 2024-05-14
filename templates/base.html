@@ -59,6 +59,14 @@
                                    onclick="submit()">Logout</a>
                             </li>
                         </div>
+                        <div class="nav-link-div"
+                             onclick="navigateToURL('{% url 'my_reviews' %}')">
+                            <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
+                                <a href="{% url 'my_reviews' %} " class="link-underline link-underline-opacity-0">
+                                    My Reviews
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </li>
             {% else %}
