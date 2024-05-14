@@ -14,4 +14,6 @@ def list_movies(request):
     response = requests.get(url, params=params)
     data = response.json()
     movie = data['results']
+
     return render(request, 'movies/movies_list.html', {'data': movie})
+

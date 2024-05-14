@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Películas populares {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="mt-4">Popular movies</h1>
+        <div class="row">
+            {% for movie in data %}
+                <div class="col-md-4">
+                    <div class="card mb-4" style="border: 1px solid #000;">
+                            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}" style="height: 600px; width: 100%; object-fit: cover;">                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{ movie.title }}</strong></h5>
+                            <p class="card-text">{{ movie.overview |truncatechars:100 }}</p>
+                            <a href="{% url 'movie_details' movie.id %}" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Fecha de lanzamiento: {{ movie.release_date }}</small><br>
+                            <small class="text-muted">Puntuación media: {{ movie.vote_average }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
