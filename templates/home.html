@@ -2,11 +2,59 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-    <div class="card px-4 mt-4  ">
-        <h1 class="mt-4">Home</h1>
-        <p>Session iniciada, haga clic en el siguiente boton para entrar en el panel de administrador</p>
-        <div>
-            <a class="btn btn-primary my-5 " href="{% url 'admin_redirect' %}">Enter admin</a>
+
+  <div class="container">
+    <h1 class="mt-4 text-light-white pb-2">Popular movies</h1>
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-xl-4 col-md-6">
+            <div class="card mb-4" style="border: 1px solid #000;">
+                <div class="movie-card" onclick="window.location.href='{% url 'movie_details' movie.id %}'"
+                     style="cursor: pointer;">
+                    <img class="card-img-top cover" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                         alt="{{ movie.title }}">
+                    <div class="overlay">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><strong>{{ movie.title }}</strong></h5>
+                            <p class="card-text">{{ movie.overview |truncatechars:200 }}</p>
+                        </div>
+                        <div class="card-footer position-absolute bottom-0 w-100">
+                            <small class="">Fecha de lanzamiento: {{ movie.release_date }}</small><br>
+                            <small class="">Puntuación media: {{ movie.vote_average }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+  <div class="container">
+        <h1 class="mt-4 text-light-white">Popular series</h1>
+        <div class="row">
+            {% for serie in series %}
+                <div class="col-xl-4 col-md-6">
+                    <div class="card mb-4" style="border: 1px solid #000;">
+                        <div class="movie-card" onclick="window.location.href='{% url 'serie_details' serie.id %}'"
+                             style="cursor: pointer;">
+                            <img class="card-img-top cover" src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}"
+                                 alt="{{ serie.title }}">
+                            <div class="overlay">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><strong>{{ serie.title }}</strong></h5>
+                                    <p class="card-text">{{ serie.description |truncatechars:200 }}</p>
+                                </div>
+                                <div class="card-footer position-absolute bottom-0 w-100">
+                                    <small class="">Fecha de lanzamiento: {{ serie.release_date }}</small><br>
+                                    <small class="">Puntuación media: {{ serie.rating }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
+
 {% endblock %}
