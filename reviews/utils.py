@@ -20,7 +20,7 @@ def create_movie(movieId):
         overview=movie1['overview'],
         release_date=movie1['release_date'],
         poster_path=movie1['poster_path'],
-        original_language=movie1['original_language'],
+        original_language=movie1['spoken_languages'][0]['name'],
         vote_average=movie1['vote_average'],
         original_title=movie1['original_title'],
         backdrop_path=movie1['backdrop_path'],
@@ -38,7 +38,10 @@ def create_review(request, movieId, review_form):
         review.user_id_id = request.user.id
         review.title = movie1['title']
         review.content = review_form.cleaned_data['content']
-        review.rating = review_form.cleaned_data['rating']
+        if not review_form.cleaned_data['rating'] or review_form.cleaned_data['rating'] == '':
+            review.rating = str(0)
+        else:
+            review.rating = review_form.cleaned_data['rating']
         create_movie(movieId)
         review.review_movie_id = movieId
         review.save()

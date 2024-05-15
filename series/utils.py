@@ -36,7 +36,10 @@ def create_review(request, serie_id, review_form):
         review.user_id_id = request.user.id
         review.title = serie['name']
         review.content = review_form.cleaned_data['content']
-        review.rating = review_form.cleaned_data['rating']
+        if not review_form.cleaned_data['rating'] or review_form.cleaned_data['rating'] == '':
+            review.rating = str(0)
+        else:
+            review.rating = review_form.cleaned_data['rating']
         create_serie(serie_id)
         review.review_serie_id = serie_id
         review.save()
