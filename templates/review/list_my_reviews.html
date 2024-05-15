@@ -18,10 +18,15 @@
         <tbody>
         {% for review in reviews %}
         <tr class="align-middle">
-            <td><a class="text-decoration-none"
-                   href="{% url 'movie_details' movieId=review.review_movie_id %}">{{ review.title }}</a></td>
             <td>
-                <div class="rateYo" data-rateyo-rating="{{ review.rating }}" data-rateyo-read-only="true"></div>
+                <a class="text-decoration-none"
+                   href="{% if review.review_movie_id %}{% url 'movie_details' movieId=review.review_movie_id %}{% else %}{% url 'serie_details' serie_id=review.review_serie_id %}{% endif %}">
+                    {{ review.title }}
+                </a>
+            </td>
+            <td>
+                <div id="rateYo{{ review.id }}" data-rateyo-rating="{{ review.rating }}"
+                     data-rateyo-read-only="true"></div>
             </td>
             <td>{{ review.content|truncatechars:30 }}</td>
             <td>
@@ -69,9 +74,12 @@
                         <form method="POST" action="{% url 'edit_review' reviewId=review.id %}">
                             {% csrf_token %}
                             <div class="mb-3">
-                                <label for="rating" class="form-label">Calificación</label>
-                                <div id="rateYo" data-rateyo-rating="{{ review.rating }}"></div>
-                                <input type="hidden" class="form-control" value="{{ review.rating }}" id="rating" name="rating" required>
+                                <label for="rating{{ review.id }}" class="form-label">Calificación</label>
+                                <div id="rateYoM{{ review.id }}" data-rateyo-rating="{{ review.rating }}"></div>
+                                <input type="hidden" class="form-control" value="{{ review.rating }}"
+                                       id="rating{{ review.id }}"
+                                       name="rating" required>
+
                             </div>
                             <div class="mb-3">
                                 <label for="content" class="form-label">Comentario</label>
@@ -124,18 +132,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css"/>
 <script>
     $(function () {
-        $("#rateYo").rateYo({
-            fullStar: true,
-            rating: $("#rateYo").data("rateyo-rating"),
-            onSet: function (rating, rateYoInstance) {
-                $('#rating').val(rating);
-            }
+        $("[id^=rateYoM]").each(function () {
+            var reviewId = $(this).attr('id').substring(7); // get the review id from the element id
+            $(this).rateYo({
+                fullStar: true,
+                rating: $(this).data("rateyo-rating"),
+                onSet: function (rating, rateYoInstance) {
+                    $('#rating' + reviewId).val(rating); // update the corresponding input
+                }
+            });
         });
     });
 </script>
 <script>
     $(function () {
-        $(".rateYo").each(function () {
+        $("[id^=rateYo]").each(function () {
             $(this).rateYo({
                 rating: $(this).data("rateyo-rating"),
                 readOnly: true
