@@ -50,10 +50,18 @@ def movie_details(request, movieId):
 @login_required
 def list_my_reviews(request):
     reviews = get_my_reviews(request)
-    return render(request, 'review/list_my_reviews.html', {'reviews': reviews})
+    return render(request, 'review/list_my_reviews.html', {'reviews': reviews, 'form': ReviewForm()})
 
 @login_required
 def delete_review(request, reviewId):
     review = Review.objects.get(id=reviewId)
     review.delete()
     return redirect('my_reviews')
+
+def edit_review(request, reviewId):
+    review = Review.objects.get(id=reviewId)
+    review_form = ReviewForm(request.POST)
+    review.content = review_form.data['content']
+    review.rating = review_form.data['rating']
+    review.save()
+    return  redirect('my_reviews')
