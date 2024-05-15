@@ -4,102 +4,143 @@
 {% block title %} Mis revisiones {% endblock %}
 
 {% block content %}
-    <h1 class="text-light-white my-4 px-5">Mis Reviews</h1>
-    <div class="px-5 ">
-        <table class="table table-striped table-dark ">
-            <thead>
-            <tr>
-                <th>Título de la película</th>
-                <th>Calificación</th>
-                <th>Comentario</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for review in reviews %}
-                <tr class="align-middle">
-                    <td><a class="text-decoration-none"
-                           href="{% url 'movie_details' movieId=review.review_movie_id %}">{{ review.title }}</a></td>
-                    <td>{{ review.rating }}</td>
-                    <td>{{ review.content|truncatechars:30 }}</td>
-                    <td>
-                        <button type="button" class="btn btn-success" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                 class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path fill="#f7f5f0" d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                <path fill="#f7f5f0" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                            </svg>
-                        </button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#editModal{{ review.id }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                 width="24" height="24">
-                                <path fill="#f7f5f0"
-                                      d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>
-                            </svg>
-                        </button>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal{{ review.id }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24 fill=" currentColor
-                            "
-                            class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path fill="#f7f5f0"
-                                  d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
+<h1 class="text-light-white my-4 px-5">Mis Reviews</h1>
+<div class="px-5 ">
+    <table class="table table-striped table-dark ">
+        <thead>
+        <tr>
+            <th>Título de la película</th>
+            <th>Calificación</th>
+            <th>Comentario</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for review in reviews %}
+        <tr class="align-middle">
+            <td><a class="text-decoration-none"
+                   href="{% url 'movie_details' movieId=review.review_movie_id %}">{{ review.title }}</a></td>
+            <td>
+                <div class="rateYo" data-rateyo-rating="{{ review.rating }}" data-rateyo-read-only="true"></div>
+            </td>
+            <td>{{ review.content|truncatechars:30 }}</td>
+            <td>
+                <button type="button" class="btn btn-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                         class="bi bi-eye-fill" viewBox="0 0 16 16">
+                        <path fill="#f7f5f0" d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                        <path fill="#f7f5f0"
+                              d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                    </svg>
+                </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#editModal{{ review.id }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                         width="24" height="24">
+                        <path fill="#f7f5f0"
+                              d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>
+                    </svg>
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal{{ review.id }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24 fill=" currentColor
+                    "
+                    class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path fill="#f7f5f0"
+                          d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                    </svg>
+                </button>
+            </td>
+        </tr>
 
-                <!-- Edit Modal -->
-                <div class="modal fade" id="editModal{{ review.id }}" tabindex="-1"
-                     aria-labelledby="editModalLabel{{ review.id }}"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editModalLabel{{ review.id }}">Editar Reseña</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editModal{{ review.id }}" tabindex="-1"
+             aria-labelledby="editModalLabel{{ review.id }}"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel{{ review.id }}">Editar Reseña</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>{{ review.title }}</h5>
+                        <form method="POST" action="{% url 'edit_review' reviewId=review.id %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="rating" class="form-label">Calificación</label>
+                                <div id="rateYo" data-rateyo-rating="{{ review.rating }}"></div>
+                                <input type="hidden" class="form-control" id="rating" name="rating" required>
                             </div>
-                            <div class="modal-body">
-                                <!-- Aquí puedes agregar tu formulario de edición de revisión -->
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Comentario</label>
+                                <textarea class="form-control" id="content" name="content"
+                                          rows="3" required>{{ review.content }}</textarea>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Guardar cambios</button>
-                            </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </form>
+
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Delete Modal -->
-                <!-- Delete Modal -->
-                <div class="modal fade" id="deleteModal{{ review.id }}" tabindex="-1"
-                     aria-labelledby="deleteModalLabel{{ review.id }}"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalLabel{{ review.id }}">Eliminar Reseña</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                ¿Estás seguro de que quieres eliminar esta reseña?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <form method="POST" action="{% url 'delete_review' reviewId=review.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-                        </div>
+        <!-- Delete Modal -->
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal{{ review.id }}" tabindex="-1"
+             aria-labelledby="deleteModalLabel{{ review.id }}"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel{{ review.id }}">Eliminar Reseña</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estás seguro de que quieres eliminar esta reseña?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <form method="POST" action="{% url 'delete_review' reviewId=review.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
 
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css"/>
+<script>
+    $(function () {
+        $("#rateYo").rateYo({
+            fullStar: true,
+            rating: $("#rateYo").data("rateyo-rating"),
+            onSet: function (rating, rateYoInstance) {
+                $('#rating').val(rating);
+            }
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $(".rateYo").each(function () {
+            $(this).rateYo({
+                rating: $(this).data("rateyo-rating"),
+                readOnly: true
+            });
+        });
+    });
+</script>
 {% endblock %}
