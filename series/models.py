@@ -15,6 +15,11 @@ class serie(models.Model):
     original_language = models.CharField(max_length=100, default="")
     producer = models.ManyToManyField(productor, blank=True)
 
+    original_title = models.CharField(max_length=255, default="")
+    vote_average = models.FloatField(blank=True, null=True)
+    poster_path = models.CharField(max_length=255, default="")
+    backdrop_path = models.CharField(max_length=255, blank=True, null=True)
+
 
 class seasonDetail(models.Model):
     air_date = models.DateField()

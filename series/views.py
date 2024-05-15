@@ -3,7 +3,7 @@ from django.shortcuts import render
 import requests
 
 from reviews.forms import ReviewForm
-from reviews.utils import create_review
+from series.utils import create_review
 
 
 def get_popular_series(request):
@@ -55,9 +55,11 @@ def serie_details(request, serie_id):
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         if review_form.is_valid():
+
             create_review(request, serie_id, review_form)
             return render(request, 'series/serie_detail.html', {'series': serie, 'review_form': review_form})
         else:
+            print(review_form.errors)
             return review_form.add_error(None, "Error en el formulario")
 
     return render(request, 'series/serie_detail.html', {'series': serie, 'review_form': ReviewForm()})

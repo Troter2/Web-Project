@@ -77,8 +77,8 @@
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
                                               id="floatingTextarea2" style="height: 100px"
-                                              name="{{ review_form.content.name }}">{{ review_form.content.value|default_if_none:'' }}</textarea>
-                                    <label for="floatingTextarea2">Comments</label>
+                                              name="{{ review_form.content.name }}" required>{{ review_form.content.value|default_if_none:'' }}</textarea>
+                                    <label for="floatingTextarea2">Reseña</label>
                                 </div>
                                 <br>
                                 <div id="rateYo"></div>
@@ -86,6 +86,8 @@
                                 <br>
                                 <button type="submit" class="btn btn-primary">Publicar</button>
                             </form>
+
+
                         </div>
                         <div class="modal-footer">
                         </div>
