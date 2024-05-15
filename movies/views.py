@@ -1,10 +1,23 @@
 from django.shortcuts import render
 import requests
 
+from .models import movie
+from series.models import serie
+
+
 
 # Create your views here.
 def homepage(request):
-    return render(request, "home.html")
+    movies = movie.objects.all()[:5]
+    series = serie.objects.all()[:5]
+
+    context = {
+        'movies': movies,
+        'series': series,
+    }
+
+    return render(request, 'home.html', context)
+
 
 
 def list_movies(request):
