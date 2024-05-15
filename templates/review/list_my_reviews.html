@@ -71,7 +71,7 @@
                             <div class="mb-3">
                                 <label for="rating" class="form-label">Calificación</label>
                                 <div id="rateYo" data-rateyo-rating="{{ review.rating }}"></div>
-                                <input type="hidden" class="form-control" id="rating" name="rating" required>
+                                <input type="hidden" class="form-control" value="{{ review.rating }}" id="rating" name="rating" required>
                             </div>
                             <div class="mb-3">
                                 <label for="content" class="form-label">Comentario</label>
