@@ -5,11 +5,11 @@
 
     <div class="container">
         <h1 class="mt-4 text-light-white">Popular series</h1>
-        <form action="">
+        <form id="search-form" action="">
             <div class="input-group mb-3 w-100 container" style="max-width: 400px">
                 {% csrf_token %}
                 <input type="text" class="form-control rounded-left" placeholder="Serie title..."
-                       aria-label="Serie title..." aria-describedby="button-addon2  name="title">
+                       aria-label="Serie title..." aria-describedby="button-addon2"  name="title">
                 <button class="btn btn-success" type="submit" id="button-addon2">
                     <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="currentColor"
                          class="bi bi-search" viewBox="0 0 16 16">
@@ -20,9 +20,7 @@
 
             </div>
         </form>
-        <div class="row ">
-
-
+        <div id="search-results" class="row">
             {% for serie in data %}
                 <div class="col-xl-4 col-md-6">
                     <div class="card mb-4" style="border: 1px solid #000;">
@@ -46,4 +44,71 @@
             {% endfor %}
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var originalSeriesHTML = $('#search-results').html();
+
+            $('#search-form').submit(function (event) {
+                event.preventDefault();
+
+                var searchTerm = $(this).find('input[name="title"]').val();
+
+                if (searchTerm.trim() === '') {
+                    displayAllSeries(originalSeriesHTML);
+                } else {
+                    searchSeries(searchTerm);
+                }
+            });
+
+            function displayAllSeries(seriesHTML) {
+                $('#search-results').html(seriesHTML).show();
+            }
+
+            function searchSeries(searchTerm) {
+                $.ajax({
+                    url: 'https://api.themoviedb.org/3/search/tv',
+                    type: 'GET',
+                    data: {
+                        api_key: '3462f0a957fcd5649fa50d0ffd4ba663',
+                        query: searchTerm
+                    },
+                    success: function (response) {
+                        displaySearchResults(response.results);
+                    },
+                    error: function (error) {
+                        console.error('Error al buscar series:', error);
+                    }
+                });
+            }
+
+            function displaySearchResults(results) {
+                var searchResultsContainer = $('#search-results');
+                searchResultsContainer.empty();
+
+                $.each(results, function (index, serie) {
+                    var serieCard = `
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card mb-4" style="border: 1px solid #000;">
+                            <div class="movie-card" onclick="window.location.href='/serie-detail/${serie.id}'" style="cursor: pointer;">
+                                <img class="card-img-top cover" src="https://image.tmdb.org/t/p/w500${serie.poster_path}" alt="${serie.title}">
+                                <div class="overlay">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center"><strong>${serie.name}</strong></h5>
+                                        <p class="card-text">${serie.overview}</p>
+                                    </div>
+                                    <div class="card-footer position-absolute bottom-0 w-100">
+                                        <small class="">Fecha de lanzamiento: ${serie.first_air_date}</small><br>
+                                        <small class="">Puntuación media: ${serie.vote_average}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    searchResultsContainer.append(serieCard);
+                });
+            }
+        });
+    </script>
 {% endblock %}
