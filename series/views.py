@@ -65,7 +65,7 @@ def serie_details(request, serie_id):
             return render(request, 'series/serie_detail.html',
                           {'series': cur_serie, 'review_form': review_form, 'reviews': reviews})
         else:
-            print(review_form.errors)
+
             return review_form.add_error(None, "Error en el formulario")
     return render(request, 'series/serie_detail.html',
                   {'series': cur_serie, 'review_form': ReviewForm(), 'reviews': reviews})
