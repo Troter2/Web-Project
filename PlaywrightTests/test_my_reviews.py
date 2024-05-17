@@ -16,41 +16,7 @@ def setup_teardown():
         browser.close()
 
 
-def test_my_reviews_button1(setup_teardown: Page):
-    page = setup_teardown
-    page.goto("http://localhost:8000/")
-    page.get_by_role("link", name="Log In").click()
-    page.get_by_label("Username").click()
-    page.get_by_label("Username").fill("admin")
-    page.get_by_label("Password").click()
-    page.get_by_label("Password").fill("admin")
-    page.get_by_role("button", name="Log In").click()
-    page.get_by_role("button", name="admin").click()
-    page.get_by_role("link", name="My Reviews").click()
-    time.sleep(1)
-    page.get_by_role("row", name="Anatomía de Grey The best").locator("#view").click()
-    page.get_by_role("button", name="Close").click()
-
-
-def test_my_reviews_button2(setup_teardown: Page):
-    page = setup_teardown
-    page.goto("http://localhost:8000/")
-    page.get_by_role("link", name="Log In").click()
-    page.get_by_label("Username").click()
-    page.get_by_label("Username").fill("admin")
-    page.get_by_label("Password").click()
-    page.get_by_label("Password").fill("admin")
-    page.get_by_role("button", name="Log In").click()
-    page.get_by_role("button", name="admin").click()
-    page.get_by_role("link", name="My Reviews").click()
-    time.sleep(1)
-    page.get_by_role("row", name="Dune: Part Two Worst movie").locator("#edit").click()
-    page.get_by_role("textbox").click()
-    page.get_by_role("textbox").fill("Worst movie ever.")
-    page.get_by_role("button", name="Save Changes").click()
-
-
-def test_my_reviews_button3(setup_teardown: Page):
+def test_my_reviews_buttons(setup_teardown: Page):
     page = setup_teardown
     page.goto("http://localhost:8000/")
     page.get_by_role("link", name="Log In").click()
@@ -60,7 +26,8 @@ def test_my_reviews_button3(setup_teardown: Page):
     page.get_by_label("Password").fill("admin")
     page.get_by_role("button", name="Log In").click()
     page.get_by_role("link", name="Movies").click()
-    page.get_by_text("Kingdom of the Planet of the Apes Several generations in the future following Caesar's reign, apes are now the dominant species and live harmoniously while humans have been reduced to living in the shadows. As a new tyrannical ape le… Release date: 2024-05-08 Average rating:").click()
+    page.get_by_text(
+        "Kingdom of the Planet of the Apes Several generations in the future following Caesar's reign, apes are now the dominant species and live harmoniously while humans have been reduced to living in the shadows. As a new tyrannical ape le… Release date: 2024-05-08 Average rating:").click()
     time.sleep(1)
     page.get_by_role("button", name="Comment").click()
     page.get_by_placeholder("Leave a comment here").click()
@@ -68,6 +35,14 @@ def test_my_reviews_button3(setup_teardown: Page):
     page.get_by_role("button", name="Publish").click()
     page.get_by_role("button", name="admin").click()
     page.get_by_role("link", name="My Reviews").click()
+    time.sleep(1)
+    page.get_by_role("row", name="Kingdom of the Planet of the").locator("#view").click()
+    page.get_by_role("button", name="Close").click()
+    time.sleep(1)
+    page.get_by_role("row", name="Kingdom of the Planet of the").locator("#edit").click()
+    page.get_by_role("textbox").click()
+    page.get_by_role("textbox").fill("Worst movie ever.")
+    page.get_by_role("button", name="Save Changes").click()
     time.sleep(1)
     page.get_by_role("row", name="Kingdom of the Planet of the").locator("#delete").click()
     page.get_by_role("button", name="Delete").click()
