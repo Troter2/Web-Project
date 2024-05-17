@@ -3,6 +3,8 @@ from django.shortcuts import render
 import requests
 
 from reviews.forms import ReviewForm
+from reviews.models import Review
+from series.models import serie
 from series.utils import create_review
 
 
@@ -35,10 +37,8 @@ def serie_details(request, serie_id):
     response = requests.get(url)
     serie_data = response.json()
 
-    serie_detail = []
-
     if serie_data:
-        serie = {
+        cur_serie = {
             'poster_path': serie_data['poster_path'],
             'title': serie_data['name'],
             'description': serie_data['overview'],
@@ -50,16 +50,22 @@ def serie_details(request, serie_id):
             'number_of_seasons': serie_data.get('number_of_seasons'),
             'popularity': serie_data.get('popularity'),
         }
-    serie_detail.append(serie)
+
+    try:
+        serie_object = serie.objects.get(id=serie_id)
+        reviews = Review.objects.filter(review_serie=serie_object)[:6]
+    except:
+        reviews = None
 
     if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         if review_form.is_valid():
 
             create_review(request, serie_id, review_form)
-            return render(request, 'series/serie_detail.html', {'series': serie, 'review_form': review_form})
+            return render(request, 'series/serie_detail.html',
+                          {'series': cur_serie, 'review_form': review_form, 'reviews': reviews})
         else:
             print(review_form.errors)
             return review_form.add_error(None, "Error en el formulario")
-
-    return render(request, 'series/serie_detail.html', {'series': serie, 'review_form': ReviewForm()})
+    return render(request, 'series/serie_detail.html',
+                  {'series': cur_serie, 'review_form': ReviewForm(), 'reviews': reviews})
