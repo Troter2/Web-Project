@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Películas populares {% endblock %}
+{% block title %} Popular movies {% endblock %}
 
 {% block content %}
 
@@ -34,8 +34,8 @@
                                     <p class="card-text">{{ movie.overview |truncatechars:200 }}</p>
                                 </div>
                                 <div class="card-footer position-absolute bottom-0 w-100">
-                                    <small class="">Fecha de lanzamiento: {{ movie.release_date }}</small><br>
-                                    <small class="">Puntuación media: {{ movie.vote_average }}</small>
+                                    <small class="">Release date: {{ movie.release_date }}</small><br>
+                                    <small class="">Average rating: {{ movie.vote_average }}</small>
                                 </div>
                             </div>
                         </div>
@@ -100,8 +100,8 @@
                                         <p class="card-text">${movie.overview}</p>
                                     </div>
                                     <div class="card-footer position-absolute bottom-0 w-100">
-                                        <small class="">Fecha de lanzamiento: ${movie.release_date}</small><br>
-                                        <small class="">Puntuación media: ${movie.vote_average}</small>
+                                        <small class="">Release date: ${movie.release_date}</small><br>
+                                        <small class="">Average rating: ${movie.vote_average}</small>
                                     </div>
                                 </div>
                             </div>
