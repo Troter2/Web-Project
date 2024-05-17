@@ -54,11 +54,11 @@
                 </table>
                 <!-- Button trigger modal -->
                 {% if user.is_authenticated %}
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                    <button type="button" id="comment_buttom" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
                         Comment
                     </button>
                 {% else %}
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal"
+                    <button type="button" id="comment_buttom" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal"
                             disabled>
                         Comment
                     </button>
