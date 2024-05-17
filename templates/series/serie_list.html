@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Películas populares {% endblock %}
+{% block title %} Popular Series {% endblock %}
 
 {% block content %}
 
@@ -9,7 +9,7 @@
             <div class="input-group mb-3 w-100 container" style="max-width: 400px">
                 {% csrf_token %}
                 <input type="text" class="form-control rounded-left" placeholder="Serie title..."
-                       aria-label="Serie title..." aria-describedby="button-addon2"  name="title">
+                       aria-label="Serie title..." aria-describedby="button-addon2" name="title">
                 <button class="btn btn-success" type="submit" id="button-addon2">
                     <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="currentColor"
                          class="bi bi-search" viewBox="0 0 16 16">
@@ -34,8 +34,8 @@
                                     <p class="card-text">{{ serie.description |truncatechars:200 }}</p>
                                 </div>
                                 <div class="card-footer position-absolute bottom-0 w-100">
-                                    <small class="">Fecha de lanzamiento: {{ serie.release_date }}</small><br>
-                                    <small class="">Puntuación media: {{ serie.rating }}</small>
+                                    <small class="">Release Date: {{ serie.release_date }}</small><br>
+                                    <small class="">Average Rating: {{ serie.rating }}</small>
                                 </div>
                             </div>
                         </div>
@@ -98,8 +98,8 @@
                                         <p class="card-text">${serie.overview}</p>
                                     </div>
                                     <div class="card-footer position-absolute bottom-0 w-100">
-                                        <small class="">Fecha de lanzamiento: ${serie.first_air_date}</small><br>
-                                        <small class="">Puntuación media: ${serie.vote_average}</small>
+                                        <small class="">Release Date: ${serie.first_air_date}</small><br>
+                                        <small class="">Average Rating: ${serie.vote_average}</small>
                                     </div>
                                 </div>
                             </div>

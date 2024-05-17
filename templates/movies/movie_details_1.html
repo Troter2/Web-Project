@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} Detalles de la película {% endblock %}
+{% block title %} Movie Detail {% endblock %}
 
 {% block content %}
     <div class="ml-5 mt-3">
@@ -23,27 +23,27 @@
                 <p class="text-white-50">{{ movie.overview }}</p>
                 <table class="table table-dark table-striped">
                     <tr>
-                        <th>Fecha de lanzamiento</th>
+                        <th>Release date</th>
                         <td>{{ movie.release_date }}</td>
                     </tr>
                     <tr>
-                        <th>Puntuación media</th>
+                        <th>Average rating</th>
                         <td>{{ movie.vote_average }}</td>
                     </tr>
                     <tr>
-                        <th>Idioma original</th>
+                        <th>Original language</th>
                         <td>{{ movie.original_language }}</td>
                     </tr>
                     <tr>
-                        <th>Popularidad</th>
+                        <th>Popularity</th>
                         <td>{{ movie.popularity }}</td>
                     </tr>
                     <tr>
-                        <th>Votos</th>
+                        <th>Votes</th>
                         <td>{{ movie.vote_count }}</td>
                     </tr>
                     <tr>
-                        <th>Presupuesto</th>
+                        <th>Budget</th>
                         <td>{{ movie.budget }}</td>
                     </tr>
                     <tr>
@@ -55,12 +55,12 @@
                 <!-- Button trigger modal -->
                 {% if user.is_authenticated %}
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
-                        Comentar
+                        Comment
                     </button>
                 {% else %}
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal"
                             disabled>
-                        Comentar
+                        Comment
                     </button>
                 {% endif %}
 
@@ -70,7 +70,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="reviewModalLabel">Nueva Reseña</h5>
+                                <h5 class="modal-title" id="reviewModalLabel">New Review</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
@@ -82,13 +82,13 @@
                                     <textarea class="form-control" placeholder="Leave a comment here"
                                               id="floatingTextarea2" style="height: 100px"
                                               name="{{ review_form.content.name }}" required>{{ review_form.content.value|default_if_none:'' }}</textarea>
-                                        <label for="floatingTextarea2">Reseña</label>
+                                        <label for="floatingTextarea2">Review</label>
                                     </div>
                                     <br>
                                     <div id="rateYo"></div>
                                     <input type="hidden" name="{{ review_form.rating.name }}" id="rating">
                                     <br>
-                                    <button type="submit" class="btn btn-primary">Publicar</button>
+                                    <button type="submit" class="btn btn-primary">Publish</button>
                                 </form>
                             </div>
                             <div class="modal-footer">

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Editar perfil{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block content %}
     <section class="h-100 gradient-form">
@@ -15,7 +15,7 @@
                                     <form method="post">
                                         {% csrf_token %}
                                         {{ form.as_p }}
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
                                     </form>
                                 </div>
                             </div>

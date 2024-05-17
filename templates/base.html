@@ -45,7 +45,7 @@
                              onclick="navigateToURL('{% url 'profile' %}')">
                             <li class="dropdown-item mt-2 mb-2 bg_gray no-blue my-0 py-1">
                                 <a href="{% url 'profile' %} " class="link-underline link-underline-opacity-0 text-secondary fw-semibold" >
-                                    Perfil
+                                    Profile
                                 </a>
                             </li>
                         </div>
@@ -71,7 +71,7 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" aria-current="page" href="{% url 'login' %}">Log In</a>
+                    <a class="nav-link fw-semibold" aria-current="page" href="{% url 'login' %}">Sign In</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-semibold" href="{% url 'user_register' %}">Sing up</a>
