@@ -21,7 +21,7 @@ def setup_teardown():
         browser.close()
 
 
-def serie_test(setup_teardown: Page):
+def test_serie_2(setup_teardown: Page):
     page = setup_teardown
     page.get_by_role("link", name="Series").click()
     expect(page.locator("h1")).to_contain_text("Popular series")
@@ -38,7 +38,7 @@ def serie_test(setup_teardown: Page):
     expect(page.get_by_role("rowgroup")).to_contain_text("Numero de temporadas")
 
 
-def serie2_test(setup_teardown: Page):
+def test_serie_2(setup_teardown: Page):
     page = setup_teardown
     page.get_by_role("link", name="Series").click()
     expect(page.locator("h1")).to_contain_text("Popular series")
