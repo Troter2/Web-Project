@@ -12,7 +12,7 @@ class Review(models.Model):
     review_serie = models.ForeignKey(serie, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=255, default="")
     content = models.TextField(blank=True, null=True)
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

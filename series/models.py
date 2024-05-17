@@ -14,7 +14,6 @@ class serie(models.Model):
     in_production = models.BooleanField(default=False)
     original_language = models.CharField(max_length=100, default="")
     producer = models.ManyToManyField(productor, blank=True)
-
     original_title = models.CharField(max_length=255, default="")
     vote_average = models.FloatField(blank=True, null=True)
     poster_path = models.CharField(max_length=255, default="")

@@ -39,6 +39,7 @@ def movie_details(request, movieId):
                 reviews = None
             return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews})
         else:
+            print(review_form.errors)
             return review_form.add_error(None, "Error en el formulari")
 
     try:
