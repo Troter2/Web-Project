@@ -16,41 +16,7 @@ def setup_teardown():
         browser.close()
 
 
-def test_my_reviews_button1(setup_teardown: Page):
-    page = setup_teardown
-    page.goto("http://localhost:8000/")
-    page.get_by_role("link", name="Log In").click()
-    page.get_by_label("Username").click()
-    page.get_by_label("Username").fill("admin")
-    page.get_by_label("Password").click()
-    page.get_by_label("Password").fill("admin")
-    page.get_by_role("button", name="Log In").click()
-    page.get_by_role("button", name="admin").click()
-    page.get_by_role("link", name="My Reviews").click()
-    time.sleep(1)
-    page.get_by_role("row", name="Anatomía de Grey The best").locator("#view").click()
-    page.get_by_role("button", name="Close").click()
-
-
-def test_my_reviews_button2(setup_teardown: Page):
-    page = setup_teardown
-    page.goto("http://localhost:8000/")
-    page.get_by_role("link", name="Log In").click()
-    page.get_by_label("Username").click()
-    page.get_by_label("Username").fill("admin")
-    page.get_by_label("Password").click()
-    page.get_by_label("Password").fill("admin")
-    page.get_by_role("button", name="Log In").click()
-    page.get_by_role("button", name="admin").click()
-    page.get_by_role("link", name="My Reviews").click()
-    time.sleep(1)
-    page.get_by_role("row", name="Dune: Part Two Worst movie").locator("#edit").click()
-    page.get_by_role("textbox").click()
-    page.get_by_role("textbox").fill("Worst movie ever.")
-    page.get_by_role("button", name="Save Changes").click()
-
-
-def test_my_reviews_button3(setup_teardown: Page):
+def test_my_reviews_buttons(setup_teardown: Page):
     page = setup_teardown
     page.goto("http://localhost:8000/")
     page.get_by_role("link", name="Log In").click()
@@ -68,6 +34,14 @@ def test_my_reviews_button3(setup_teardown: Page):
     page.get_by_role("button", name="Publish").click()
     page.get_by_role("button", name="admin").click()
     page.get_by_role("link", name="My Reviews").click()
+    time.sleep(1)
+    page.get_by_role("row", name="Kingdom of the Planet of the").locator("#view").click()
+    page.get_by_role("button", name="Close").click()
+    time.sleep(1)
+    page.get_by_role("row", name="Kingdom of the Planet of the").locator("#edit").click()
+    page.get_by_role("textbox").click()
+    page.get_by_role("textbox").fill("Worst movie ever.")
+    page.get_by_role("button", name="Save Changes").click()
     time.sleep(1)
     page.get_by_role("row", name="Kingdom of the Planet of the").locator("#delete").click()
     page.get_by_role("button", name="Delete").click()
