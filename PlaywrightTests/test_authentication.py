@@ -48,7 +48,7 @@ def test_signup_with_account(setup_teardown: Page):
     page.get_by_label("Contraseña").click()
     page.get_by_label("Contraseña").fill("aurelio123")
     expect(page.get_by_role("img", name="login form")).to_be_visible()
-    expect(page.locator("span")).to_contain_text("Sign in")
+    expect(page.locator("span")).to_contain_text("Log In")
     page.get_by_role("button", name="Login").click()
 
 
@@ -56,7 +56,7 @@ def login_test(setup_teardown: Page):
     page = setup_teardown
     page.get_by_role("link", name="Log In").click()
     expect(page.get_by_role("img", name="login form")).to_be_visible()
-    expect(page.locator("span")).to_contain_text("Sign in")
+    expect(page.locator("span")).to_contain_text("Log In")
     page.get_by_label("Usuario").click()
     page.get_by_label("Usuario").fill("aurelio")
     page.get_by_label("Contraseña").click()
@@ -67,7 +67,7 @@ def login_test(setup_teardown: Page):
 def login_test_register(setup_teardown: Page):
     page = setup_teardown
     page.get_by_role("link", name="Log In").click()
-    expect(page.locator("span")).to_contain_text("Sign in")
+    expect(page.locator("span")).to_contain_text("Log In")
     expect(page.get_by_role("img", name="login form")).to_be_visible()
     expect(page.get_by_role("paragraph")).to_contain_text("Don't have an account? Register here")
     page.get_by_role("link", name="Register here").click()
