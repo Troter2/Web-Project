@@ -1,8 +1,10 @@
 import requests
+
+from reviews.models import Review
 from .models import serie
 
 
-from reviews.utils import get_review
+
 def get_serie_data(serie_id):
     api_key = '3462f0a957fcd5649fa50d0ffd4ba663'
     url = f'https://api.themoviedb.org/3/tv/{serie_id}?api_key={api_key}&language=es-ES'
@@ -48,5 +50,9 @@ def create_review(request, serie_id, review_form):
         review_exists.rating = review_form.cleaned_data['rating']
         review_exists.save()
 
-
-
+def get_review(user_id, serie_id):
+    try:
+        review = Review.objects.get(user_id=user_id, review_serie_id=serie_id)
+        return review
+    except Review.DoesNotExist:
+        return None
