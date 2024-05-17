@@ -1,6 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright, Page, expect
 
+
 # Fixture de pytest para inicializar y cerrar el navegador antes y después de cada prueba
 @pytest.fixture(scope="function")
 def setup_teardown():
@@ -12,6 +13,7 @@ def setup_teardown():
         yield page
         context.close()
         browser.close()
+
 
 # Prueba de autenticación usando la fixture setup_teardown
 def test_signup(setup_teardown: Page):
