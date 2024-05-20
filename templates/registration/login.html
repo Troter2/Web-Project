@@ -1,37 +1,56 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %} Log in {% endblock %}
 {% block content %}
-    <section class="h-100 gradient-form ">
+
+
+    <section class="h-100" >
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-xl-10">
-                    <div class="card rounded-3 text-black">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
-                            <div class="col-lg-12">
-                                <div class="card-body p-md-5 mx-md-4">
-                                    <div class="text-center">
-                                        <h4 class="mt-1 mb-5 pb-1">Iniciar sesión</h4>
-                                    </div>
-                                    <form method="post" action="{% url 'login' %}">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block overflow-hidden">
+                                <img src="https://fotografias.larazon.es/clipping/cmsimages01/2022/03/19/52A48D39-ABE0-48B4-953D-4D8AC0521BBE/98.jpg?crop=6571,3697,x0,y327&width=1900&height=1069&optimize=low&format=webply"
+                                     alt="login form" class="img-fluid h-100 w-auto"  style="border-radius: 1rem 0 0 1rem;object-fit: cover;object-position: center;"/>
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+
+                                    <form method="post" action="{% url 'user_login' %}">
                                         {% csrf_token %}
-                                        <div class=" mb-3 form-floating ">
 
-                                            <input type="text" name="username" required="" class="form-control" id="userInput"
-                                                   placeholder="name@example.com">
-                                            <label for="userInput">Usuario</label>
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                            <span class="h1 fw-bold mb-0">Log In</span>
                                         </div>
 
-                                        <div class="mb-4 form-floating ">
-                                            <input type="password" name="password" required="" class="form-control" id="passwordInput"
-                                                   placeholder="name@example.com">
-                                            <label for="passwordInput">Contraseña</label>
+
+                                        <div class="mb-3 form-floating {% if error_message %}has-danger{% endif %}">
+                                            <input type="text" name="username" required=""
+                                                   class="form-control {% if error_message %}is-invalid{% endif %}"
+                                                   id="userInput" placeholder="name@example.com" autofocus >
+                                            <label for="userInput">Username</label>
                                         </div>
-                                        <div class="text-center mt-2 mb-5 pb-1">
-                                            <button class="mt-3 mx-auto btn btn-primary">
-                                                Log in
+
+                                        <div class="mb-4 form-floating {% if error_message %}has-danger{% endif %}">
+                                            <input type="password" name="password" required=""
+                                                   class="form-control {% if error_message %}is-invalid{% endif %}"
+                                                   id="passwordInput" placeholder="name@example.com">
+                                            <label for="passwordInput">Password</label>
+                                        </div>
+
+                                        <div class="pt-1 mb-4">
+                                            <button data-mdb-button-init data-mdb-ripple-init
+                                                    class="btn btn-dark btn-lg btn-block" type="submit">Log In
                                             </button>
                                         </div>
+
+                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
+                                                href="{% url 'signup' %}"
+                                                style="color: #393f81;">Register here</a></p>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -40,4 +59,9 @@
             </div>
         </div>
     </section>
+
+
 {% endblock %}
+
+
+

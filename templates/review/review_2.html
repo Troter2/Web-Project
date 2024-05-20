@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} Review {% endblock %}
+
+{% block content %}
+
+    <div class="card px-4 mt-4  ">
+        <h1 class="mt-4">Thanks for your review </h1>
+        <p>Thanks for your review. We will review it and publish it soon.</p>
+    </div>
+    <a href="{% url 'home' %}"> Return Home</a>
+{% endblock %}

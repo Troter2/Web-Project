@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %} Popular movies {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="mt-4 text-light-white pb-2">Popular movies</h1>
+        <form id="search-form" action="">
+            <div class="input-group mb-3 w-100 container" style="max-width: 400px">
+                {% csrf_token %}
+                <input type="text" class="form-control rounded-left" placeholder="Movie title..."
+                       aria-label="Movie title..." aria-describedby="button-addon2" name="title">
+                <button class="btn btn-success" type="submit" id="button-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="currentColor"
+                         class="bi bi-search" viewBox="0 0 16 16">
+                        <path fill="#f7f5f0"
+                              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+
+            </div>
+        </form>
+        <div id="search-results" class="row">
+            {% for movie in data %}
+                <div class="col-xl-4 col-md-6">
+                    <div class="card mb-4" style="border: 1px solid #000;">
+                        <div class="movie-card" onclick="window.location.href='{% url 'movie_details' movie.id %}'"
+                             style="cursor: pointer;">
+                            <img class="card-img-top cover" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                                 alt="{{ movie.title }}">
+                            <div class="overlay">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><strong>{{ movie.title }}</strong></h5>
+                                    <p class="card-text">{{ movie.overview |truncatechars:200 }}</p>
+                                </div>
+                                <div class="card-footer position-absolute bottom-0 w-100">
+                                    <small class="">Release date: {{ movie.release_date }}</small><br>
+                                    <small class="">Average rating: {{ movie.vote_average }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var originalMovies = $('#search-results').html();
+
+            $('#search-form').submit(function (event) {
+                event.preventDefault();
+
+                var searchTerm = $(this).find('input[name="title"]').val();
+
+                if (searchTerm.trim() === '') {
+                    displayAllMovies(originalMovies);
+                } else {
+                    searchMovies(searchTerm);
+                }
+            });
+
+
+            function displayAllMovies(moviesHTML) {
+                $('#search-results').html(moviesHTML).show();
+            }
+
+            function searchMovies(searchTerm) {
+                $.ajax({
+                    url: 'https://api.themoviedb.org/3/search/movie',
+                    type: 'GET',
+                    data: {
+                        api_key: '3462f0a957fcd5649fa50d0ffd4ba663',
+                        query: searchTerm
+                    },
+                    success: function (response) {
+                        displaySearchResults(response.results);
+                    },
+                    error: function (error) {
+                        console.error('Error al buscar películas:', error);
+                    }
+                });
+            }
+
+            function displaySearchResults(results) {
+                var searchResultsContainer = $('#search-results');
+                searchResultsContainer.empty();
+
+                $.each(results, function (index, movie) {
+                    var movieCard = `
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card mb-4" style="border: 1px solid #000;">
+                            <div class="movie-card" onclick="window.location.href='/reviews/movie-detail/${movie.id}'" style="cursor: pointer;">
+                                <img class="card-img-top cover" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                                <div class="overlay">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center"><strong>${movie.title}</strong></h5>
+                                        <p class="card-text">${movie.overview}</p>
+                                    </div>
+                                    <div class="card-footer position-absolute bottom-0 w-100">
+                                        <small class="">Release date: ${movie.release_date}</small><br>
+                                        <small class="">Average rating: ${movie.vote_average}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    searchResultsContainer.append(movieCard);
+                });
+            }
+        });
+    </script>
+{% endblock %}
