@@ -23,19 +23,24 @@
         <div id="search-results" class="row">
             {% for serie in data %}
                 <div class="col-xl-4 col-md-6">
-                    <div class="card mb-4" style="border: 1px solid #000;">
+                    <div class="card mb-4" style="border: 1px solid #000;" vocab="http://schema.org/" typeof="TVSeries">
                         <div class="movie-card" onclick="window.location.href='{% url 'serie_details' serie.id %}'"
                              style="cursor: pointer;">
                             <img class="card-img-top cover" src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}"
-                                 alt="{{ serie.title }}">
+                                 alt="{{ serie.title }}" property="image">
                             <div class="overlay">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center"><strong>{{ serie.title }}</strong></h5>
-                                    <p class="card-text">{{ serie.description |truncatechars:200 }}</p>
+                                    <h5 class="card-title text-center" property="name">
+                                        <strong>{{ serie.title }}</strong></h5>
+                                    <p class="card-text"
+                                       property="description">{{ serie.description |truncatechars:200 }}</p>
                                 </div>
                                 <div class="card-footer position-absolute bottom-0 w-100">
-                                    <small class="">Release Date: {{ serie.release_date }}</small><br>
-                                    <small class="">Average Rating: {{ serie.rating }}</small>
+                                    <small class="" property="datePublished">Release
+                                        Date: {{ serie.release_date }}</small><br>
+                                    <small class="" property="aggregateRating" typeof="AggregateRating">
+                                        Average Rating: <span property="ratingValue">{{ serie.rating }}</span>
+                                    </small>
                                 </div>
                             </div>
                         </div>
