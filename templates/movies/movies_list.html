@@ -2,7 +2,6 @@
 {% block title %} Popular movies {% endblock %}
 
 {% block content %}
-
     <div class="container">
         <h1 class="mt-4 text-light-white pb-2">Popular movies</h1>
         <form id="search-form" action="">
@@ -26,7 +25,7 @@
                         <div class="movie-card" onclick="window.location.href='{% url 'movie_details' movie.id %}'"
                              style="cursor: pointer;">
                             <img class="card-img-top cover" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
-                                 alt="{{ movie.title }} property="image">
+                                 alt="{{ movie.title }}" property="image">
                             <div class="overlay">
                                 <div class="card-body">
                                     <h5 class="card-title text-center" property="name">
