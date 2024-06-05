@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import requests
 import json
-from reviews.utils import get_movie_data, create_review, create_movie, get_my_reviews
+from reviews.utils import get_movie_data, create_review, create_movie, get_my_reviews, get_rating
 from .models import Review
 
 
@@ -44,9 +44,11 @@ def movie_details(request, movieId):
 
     try:
         reviews = Review.objects.filter(review_movie=movie_object)[:6]
+        rating = get_rating(reviews)
     except :
+        rating = None
         reviews = None
-    return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews})
+    return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews, 'rating': rating, 'numReviews': len(reviews)})
 
 @login_required
 def list_my_reviews(request):
