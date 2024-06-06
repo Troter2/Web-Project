@@ -17,26 +17,28 @@
             </thead>
             <tbody>
             {% for review in reviews %}
-                <tr class="align-middle">
+                <tr class="align-middle" vocab="http://schema.org" typeof="Review">
                     <td>
                         <a class="text-decoration-none"
                            href="
-
-
-
-
-
-
-
-                                   {% if review.review_movie_id %}{% url 'movie_details' movieId=review.review_movie_id %}{% else %}{% url 'serie_details' serie_id=review.review_serie_id %}{% endif %}">
+                                   {% if review.review_movie_id %}
+                                        {% url 'movie_details' movieId=review.review_movie_id %}
+                                   {% else %}
+                                        {% url 'serie_details' serie_id=review.review_serie_id %}{% endif %}"
+                           property="url name">
                             {{ review.title }}
                         </a>
                     </td>
                     <td>
                         <div id="rateYo{{ review.id }}" data-rateyo-rating="{{ review.rating }}"
                              data-rateyo-read-only="true"></div>
+                        <span property="reviewRating" typeof="Rating">
+                            <meta property="worstRating" content="0">
+                            <meta property="bestRating" content="5">
+                            <meta property="ratingValue" content="{{ review.rating }}">
+                        </span>
                     </td>
-                    <td>{{ review.content|truncatechars:30 }}</td>
+                    <td property="description">{{ review.content|truncatechars:30 }}</td>
                     <td>
                         <button type="button" id="view" class="btn btn-success" data-bs-toggle="modal"
                                 data-bs-target="#viewModal{{ review.id }}">
@@ -133,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Edit Modal -->
                 <div class="modal fade" id="editModal{{ review.id }}" tabindex="-1"
                      aria-labelledby="editModalLabel{{ review.id }}"
@@ -171,7 +173,7 @@
                 </div>
             </div>
 
-                <!-- Delete Modal -->
+            <!-- Delete Modal -->
             <div class="modal fade" id="deleteModal{{ review.id }}" tabindex="-1"
                  aria-labelledby="deleteModalLabel{{ review.id }}"
                  aria-hidden="true">
