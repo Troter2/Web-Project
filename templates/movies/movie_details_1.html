@@ -114,18 +114,27 @@
             from <span property="reviewCount">{{reviews|length}}</span> review{{ reviews|length|pluralize }}
         </p>
     </span>
-
-    {% for review in reviews %}
-
-    <div class="col-md-6 mb-3">
-        <div class="card h-100 bg-dark text-light-white">
-            <div class="card-body">
-                <h3>{{ review.rating }}/5</h3>
-                <p class="card-text">{{ review.content }}</p>
+    <ul rel="review">
+        {% for review in reviews %}
+        <li typeof="Review">
+            <div class="col-md-6 mb-3">
+                <div class="card h-100 bg-dark text-light-white">
+                    <div class="card-body">
+                        <p rel="reviewRating" typeof="Rating">
+                            <span property="worstRating" content="{{ worstRating }}"></span>
+                            <span property="ratingValue">{{ review.rating }}</span>
+                        <h3>{{ review.rating }}/5</h3>
+                        <span property="bestRating" content="{{ bestRating }}"></span>
+                        </p>
+                        <p class="card-text" property="description">{{ review.content }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    {% endfor %}
+            <p>Created by <span property="author">{{ review.user_id.username }}</span> on
+                <span property="datePublished">{{ review.created_at }}</span></p>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endif %}
 

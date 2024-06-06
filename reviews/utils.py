@@ -63,6 +63,8 @@ def get_my_reviews(request):
 
 def get_rating(reviews):
     rating = 0
+
     for review in reviews:
         rating += review.rating
-    return rating / len(reviews)
+
+    return  rating / len(reviews)

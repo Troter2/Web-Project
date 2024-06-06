@@ -46,11 +46,17 @@ def movie_details(request, movieId):
         reviews = Review.objects.filter(review_movie=movie_object)[:6]
         rating = get_rating(reviews)
         length = len(reviews)
+
+
     except :
         rating = None
         reviews = None
         length = None
-    return render(request, 'movies/movie_details_1.html', {'movie': movie_data, 'review_form': ReviewForm(), 'reviews': reviews, 'rating': rating, 'numReviews': length})
+
+    return render(request, 'movies/movie_details_1.html', {'movie': movie_data,
+                                                           'review_form': ReviewForm(), 'reviews': reviews,
+                                                           'rating': rating, 'numReviews': length,
+                                                           'bestRating': 5, 'worstRating': 1})
 
 @login_required
 def list_my_reviews(request):
