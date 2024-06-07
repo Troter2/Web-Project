@@ -60,3 +60,11 @@ def get_review(user_id, movie_id):
 def get_my_reviews(request):
     reviews = Review.objects.filter(user_id=request.user.id)
     return reviews
+
+def get_rating(reviews):
+    rating = 0
+
+    for review in reviews:
+        rating += review.rating
+
+    return  rating / len(reviews)
