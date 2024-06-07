@@ -16,16 +16,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <span property="image">
                 <img property="image" class="img-fluid fade-img"
-                     src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                      src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
                      alt="{{ movie.title }}" style="box-shadow: 0 30px 40px rgba(0,0,0,.1);">
-                </span>
 
             </div>
             <div class="col-md-6">
                 <span property="name">
-                    <h1 property="name" class="mb-3 text-light-white">{{ movie.title }}</h1>
+                    <h1  class="mb-3 text-light-white">{{ movie.title }}</h1>
                 </span>
                 <p class="text-white-50">{{ movie.overview }}</p>
                 <table class="table table-dark table-striped">
