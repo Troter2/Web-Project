@@ -56,7 +56,7 @@ def movie_details(request, movieId):
     return render(request, 'movies/movie_details_1.html', {'movie': movie_data,
                                                            'review_form': ReviewForm(), 'reviews': reviews,
                                                            'rating': rating, 'numReviews': length,
-                                                           'bestRating': 5, 'worstRating': 1})
+                                                           'bestRating': 5, 'worstRating': 0})
 
 @login_required
 def list_my_reviews(request):
